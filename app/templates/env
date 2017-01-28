@@ -1,0 +1,3 @@
+WEBHOOK_URL = <%= webhookUrl %>/flint
+TOKEN = <%= token %>
+PORT = <%= port %>

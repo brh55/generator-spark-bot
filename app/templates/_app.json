@@ -1,0 +1,24 @@
+{
+  "name": "<%= botName %>",
+  "description": "<%= botDescription %>",
+  "keywords": [
+    "bot",
+    "spark",
+    "communication"
+  ],
+  "repository": "https://github.com/<%= githubUsername %>/<%= botName %>",
+  "env": {
+    "WEBHOOK_URL": {
+      "description": "Spark web hook url in order for the bot to be notified",
+      "required": true
+    },
+    "TOKEN": {
+      "description": "Spark token for authentication",
+      "required": true
+    },
+    "PORT": {
+      "description": "Port of bot to be running on",
+      "required": false
+    }
+  }
+}

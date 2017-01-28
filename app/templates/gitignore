@@ -1,0 +1,5 @@
+/node_modules
+/typings
+.VS_CODE
+npm-debug.log
+.env
