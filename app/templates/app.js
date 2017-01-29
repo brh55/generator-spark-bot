@@ -17,12 +17,12 @@ registerCommands(flint);
 
 app.post('/flint', webhook(flint));
 var server = app.listen(CONFIG.port, () =>
-    flint.debug('Flint listening on port %s', CONFIG.port));
+	flint.debug('Flint listening on port %s', CONFIG.port));
 
 process.on('SIGINT', () => {
-    flint.debug('Bot shutting down...');
-    server.close();
-    flint.stop().then(() => process.exit());
+	flint.debug('Bot shutting down...');
+	server.close();
+	flint.stop().then(() => process.exit());
 });
 
 /**
@@ -31,7 +31,7 @@ process.on('SIGINT', () => {
  * @param  {object} flint flint instance
  */
 function registerCommands(flint) {
-    const commands = requireAll(path.join(__dirname, 'commands'));
-    Object.keys(commands)
-        .forEach(name => flint.hears(commands[name].trigger, commands[name].callback));
+	const commands = requireAll(path.join(__dirname, 'commands'));
+	Object.keys(commands)
+		.forEach(name => flint.hears(commands[name].trigger, commands[name].callback));
 }

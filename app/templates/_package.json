@@ -13,7 +13,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "xo && ava",
+    "test": "xo && ava -v",
     "start": "node app.js",
     "debug": "DEBUG=* npm run start"
   },

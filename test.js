@@ -32,9 +32,9 @@ test('Test standard scaffold', async t => {
     // Tpl Assertions
     assert.fileContent([
         ['readme.md', /https:\/\/img.shields.io\/travis\/tester\/my-awesome-bot.svg/],
-        ['.env', /token1234/ ],
-        ['.env', /testing.ngrok.io/ ],
-        ['.env', /5000/ ]
+        ['.env', /token1234/],
+        ['.env', /testing.ngrok.io/],
+        ['.env', /5000/]
     ]);
 
     assert.noFileContent([

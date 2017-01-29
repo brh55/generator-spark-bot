@@ -4,14 +4,19 @@
 ## Configure
 Your bot's settings have already been configured during scaffolding, but these can be updated within the `.env` file.
 
+## Scripts
+- `npm run test` - Run linter and unit test
+- `npm start` - Start the bot
+
 ## Commands
-The bot will automatically register commands for any files defined in the `./commands` directory. These commands must export an object with a `trigger` and `callback` property.
+The bot will automatically register commands for any files defined in the `./commands` directory. These commands must follow an interface that exports a `trigger` property and `callback` method.
 
 ### trigger | [`<RegEx>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type)
 
-The trigger that the bot will listen for, and the associated callback will be executed.
+The contextual trigger that will cause the bot to execute the callback upon matches.
 
 ### callback | [`<function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
+
 The function to be executed
 
 ## Usage
@@ -30,8 +35,6 @@ Run unit test: `ava [-v]`
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 <% } %>
-## Credits
-[generator-nm](https://github.com/sindresorhus/generator-nm) + [generator-generator] as an example to create the base of this generator.
 
 ## License
 
