@@ -10,6 +10,7 @@ test('Test standard scaffold', async () => {
 		.withPrompts({
 			botName: 'my-awesome-bot',
 			githubUsername: 'tester',
+			website: 'helloworld',
 			webhookUrl: 'testing.ngrok.io',
 			token: 'token1234',
 			port: 5000,
