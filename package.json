@@ -8,6 +8,9 @@
     "email": "brandonhim@live.com",
     "url": "http://brandonhim.com"
   },
+  "scripts": {
+    "test": "xo && ava -v"
+  },
   "files": [
     "app"
   ],
@@ -23,12 +26,14 @@
     "chalk": "^1.1.3",
     "humanize-url": "^1.0.1",
     "normalize-url": "^1.9.0",
+    "underscore.string": "^3.3.4",
     "yeoman-generator": "^1.0.0",
     "yosay": "^1.2.1"
   },
   "devDependencies": {
-    "yeoman-test": "^1.6.0",
-    "yeoman-assert": "^2.2.1"
+    "ava": "^0.17.0",
+    "yeoman-assert": "^2.2.1",
+    "yeoman-test": "^1.6.0"
   },
   "xo": {
     "esnext": true,

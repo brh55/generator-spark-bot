@@ -7,10 +7,6 @@ const yosay = require('yosay');
 const _s = require('underscore.string');
 
 module.exports = class extends Generator {
-	constructor(a, b) {
-		super(a, b);
-	}
-
 	init() {
 		this.log(yosay(
 			`Welcome to ${chalk.red('generator-')}${chalk.blue('spark')}${chalk.red('-bot')} generator!`
@@ -50,13 +46,13 @@ module.exports = class extends Generator {
 		}, {
 			name: 'token',
 			message: 'What is your bot token?',
-			validate: x => x.length > 0 ? true : 'You have to provide a token',
+			validate: x => x.length > 0 ? true : 'You have to provide a token'
 		},
 		{
 			name: 'port',
 			message: 'What port do you want to run on?',
 			default: 5000,
-			validate: x => parseInt(x) > 0 && parseInt(x) < 65536 ? true : 'You have to provide a valid port number',
+			validate: x => parseInt(x, 10) > 0 && parseInt(x, 10) < 65536 ? true : 'You have to provide a valid port number'
 		},
 		{
 			name: 'heroku',
@@ -76,7 +72,7 @@ module.exports = class extends Generator {
 				// as file and file/**
 				const tplParam = tpl || {};
 				copy(this.templatePath(from), this.destinationPath(to), tplParam);
-			}
+			};
 
 			const tpl = Object.assign({}, props);
 			tpl.website = humanizeUrl(props.website);
@@ -85,8 +81,8 @@ module.exports = class extends Generator {
 
 			copy([
 				`${this.templatePath()}/**`,
-				`!${this.templatePath()}/_*`,
-			], this.destinationPath(), tpl)
+				`!${this.templatePath()}/_*`
+			], this.destinationPath(), tpl);
 
 			if (props.heroku) {
 				copy(this.templatePath('_app.json'), this.destinationPath('app.json'), tpl);
@@ -101,6 +97,6 @@ module.exports = class extends Generator {
 	}
 
 	install() {
-		this.installDependencies({ bower: false });
+		this.installDependencies({bower: false});
 	}
-}
+};
