@@ -1,7 +1,7 @@
 {
   "name": "generator-spark-bot",
   "version": "1.0.0",
-  "description": "Scaffold a cisco spark bot with ease",
+  "description": "Scaffold a Cisco spark bot with simplicity and usability in mind",
   "homepage": "https://github.com/brh55/generator-spark-bot.git",
   "author": {
     "name": "Brandon Him",
