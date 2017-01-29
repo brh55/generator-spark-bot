@@ -1,5 +1,4 @@
 'use strict';
-
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const normalizeUrl = require('normalize-url');
@@ -64,34 +63,44 @@ module.exports = class extends Generator {
 			message: 'Do you want to have a heroku quick deploy?',
 			default: false,
 			type: 'confirm'
-		}]).then(props => {
-			const mv = (from, to) => {
-				this.fs.move(this.destinationPath(from), this.destinationPath(to));
+		}])
+		.then(props => {
+			const copy = (from, to, tpl) => {
+				const tplParam = tpl || {};
+				this.fs.copyTpl(from, to, tplParam);
 			};
+
+			const copyOrphan = (from, to, tpl) => {
+				// Not ideal to be using private method
+				// but this avoids issue with globby recogonizing destPath/file
+				// as file and file/**
+				this.fs._copySingle(this.templatePath(from), this.destinationPath(to));
+			}
 
 			const tpl = Object.assign({}, props);
 			tpl.website = humanizeUrl(props.website);
 			tpl.name = this.user.git.name();
 			tpl.email = this.user.git.email();
 
-			this.fs.copyTpl([
+			copy([
 				`${this.templatePath()}/**`,
-				'!**/_app.json'
-			], this.destinationPath(), tpl);
+				`!${this.templatePath()}/_*`,
+			], this.destinationPath(), tpl)
 
 			if (props.heroku) {
-				this.fs.copyTpl(this.templatePath('_app.json'), this.destinationPath('app.json'), tpl);
+				copy(this.templatePath('_app.json'), this.destinationPath('app.json'), tpl);
 			}
 
-			mv('gitignore', '.gitignore');
-			mv('travis.yml', '.travis.yml');
-			mv('_package.json', 'package.json');
-			mv('env', '.env');
-			mv('editorconfig', '.editorconfig');
+			copy(this.templatePath('_package.json'), this.destinationPath('package.json'), tpl);
+
+			copyOrphan('_gitignore', '.gitignore');
+			copyOrphan('_travis.yml', '.travis.yml');
+			copyOrphan('_env', '.env');
+			copyOrphan('_editorconfig', '.editorconfig');
 		});
 	}
 
 	install() {
-		this.installDependencies();
+		this.installDependencies({ bower: false });
 	}
 }
