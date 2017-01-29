@@ -1,8 +1,13 @@
 # generator-spark-bot [![Travis](https://img.shields.io/travis/brh55/generator-spark-bot.svg?style=flat-square)](https://travis-ci.org/brh55/generator-spark-bot) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=flat-square)](https://github.com/sindresorhus/xo)
 
-`generator-spark-bot` is a [yeoman](http://yeoman.io/) generator that scafolds out a node Cisco spark bot following an `event-driven` fashion.
+> `generator-spark-bot` is a [yeoman](http://yeoman.io/) generator that scaffolds out a node Cisco Spark bot following an `event-driven` fashion, and is extremely easy to get started with.
+>
+> **trigger context => callback()**
 
-> ** trigger context => callback() **
+Designed with simplicity and usability in mind:
+- Fast to get started, just drop a `.js` file within `/commands` and your bot will register a listener on start
+- Easier unit testing with access to commands' private methods
+- Includes Flint for a more robust framework
 
 ## Usage
 Ensure yeoman is is installed:
@@ -30,15 +35,15 @@ After yeoman is installed:
 ## Commands
 Commands will instruct the bot on when and how to respond to particular contextual triggers.
 
-To add a command, simply add a js file within the commands directory. When the bot is initializing, commands will automatically register with Flint at run-time.
+To add a command, simply add a `.js` file within the commands directory. When the bot is initializing, commands will automatically register with Flint at runtime.
 
 These command must implement an interface that contains a `trigger` property and a `callback` method. Refer to `example.js` within the commands directory.
 
-### trigger | [`<RegEx>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type)
+#### trigger | [`<RegEx>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type)
 
 The contextual trigger that will cause the bot to execute the callback upon matches.
 
-### callback | [`<function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
+#### callback | [`<function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
 
 The function to be executed (event handler).
 
@@ -51,7 +56,7 @@ The function to be executed (event handler).
 - `npm run debug` - Activate debugging to log
 
 ## Unit Testing
-Unit testing is straightforward, and simple. It's already configured with AVA. Commands are also accessible in the `commands` object. Any command callbacks can be tested as such: `commands.fileName.callback`.
+Unit testing is straightforward, simple, and already configured with the AVA test runner. Commands are accessible through the `fileName` as a property of the `commands` object. Thus, any command callbacks can be tested as such: `commands.fileName.callback`.
 
 In addition, the `rewire` module is pre-configured to test private methods and is easily accessible without the need of exporting any private methods. This is done with the `__get__()` method. IE: `commands.example.__get__('buildExampleMessage')`.
 
