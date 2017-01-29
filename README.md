@@ -33,6 +33,8 @@ After yeoman is installed:
 ```
 
 ## Commands
+> A command sub-generator [yo spark-bot:command] is soon to come
+
 Commands will instruct the bot on when and how to respond to particular contextual triggers.
 
 To add a command, simply add a `.js` file within the commands directory. When the bot is initializing, commands will automatically register with Flint at runtime.
@@ -46,8 +48,6 @@ The contextual trigger that will cause the bot to execute the callback upon matc
 #### callback | [`<function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
 
 The function to be executed (event handler).
-
-> A command sub-generator [yo spark-bot:command] is soon to come
 
 ## Scripts
 
