@@ -74,7 +74,8 @@ module.exports = class extends Generator {
 				// Not ideal to be using private method
 				// but this avoids issue with globby recogonizing destPath/file
 				// as file and file/**
-				this.fs._copySingle(this.templatePath(from), this.destinationPath(to));
+				const tplParam = tpl || {};
+				copy(this.templatePath(from), this.destinationPath(to), tplParam);
 			}
 
 			const tpl = Object.assign({}, props);
@@ -91,11 +92,10 @@ module.exports = class extends Generator {
 				copy(this.templatePath('_app.json'), this.destinationPath('app.json'), tpl);
 			}
 
-			copy(this.templatePath('_package.json'), this.destinationPath('package.json'), tpl);
-
+			copyOrphan('_package.json', 'package.json', tpl);
 			copyOrphan('_gitignore', '.gitignore');
 			copyOrphan('_travis.yml', '.travis.yml');
-			copyOrphan('_env', '.env');
+			copyOrphan('_env', '.env', tpl);
 			copyOrphan('_editorconfig', '.editorconfig');
 		});
 	}

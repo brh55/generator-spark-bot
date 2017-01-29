@@ -17,15 +17,28 @@ test('Test standard scaffold', async t => {
                         });
 
 
-    // assert.file('app.json');
 
-    // // Core Code Intact
-    // assert.file('app.js');
-    // assert.file('test.js');
-    // assert.file('.env');
-    // assert.file('config.js');
-    // assert.file('commands/example.js');
+    // Core Code Intact
+    assert.file([
+        'app.js',
+        'test.js',
+        '.env',
+        '.gitignore',
+        'app.json', // Heroku True
+        'config.js',
+        'commands/example.js'
+    ]);
 
     // Tpl Assertions
-    assert.fileContent('readme.md', /https:\/\/img.shields.io\/travis\/tester\/my-awesome-bot.svg/)
+    assert.fileContent([
+        ['readme.md', /https:\/\/img.shields.io\/travis\/tester\/my-awesome-bot.svg/],
+        ['.env', /token1234/ ],
+        ['.env', /testing.ngrok.io/ ],
+        ['.env', /5000/ ]
+    ]);
+
+    assert.noFileContent([
+        ['readme.md', /<%.*%>/],
+        ['.env', /<%.*%>/]
+    ])
 });
