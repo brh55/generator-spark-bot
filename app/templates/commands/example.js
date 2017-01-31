@@ -6,7 +6,7 @@ module.exports = {
 };
 
 function example(bot, trigger) {
-	bot.say(buildExampleMessage(trigger));
+	bot.say(buildExampleMessage(trigger.message));
 }
 
 function buildExampleMessage(trigger) {
