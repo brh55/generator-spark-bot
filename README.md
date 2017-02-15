@@ -16,8 +16,11 @@ Ensure yeoman is is installed:
 
 After yeoman is installed:
 
-`yo spark-bot`
-
+```bash
+$ mkdir project-name
+$ cd project-name
+$ yo spark-bot
+```
 
 ## App Structure
 ```
