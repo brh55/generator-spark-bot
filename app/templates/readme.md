@@ -11,6 +11,11 @@ Your bot's settings have already been configured during scaffolding, but these c
 ## Commands
 The bot will automatically register commands for any files defined in the `./commands` directory. These commands must follow an interface that exports a `trigger` property and `callback` method.
 
+### `yo spark-bot:command`
+
+For your convenience, the `:command` sub-generator will generate a new command within the `/commands` directory. Run the command within your project directory.
+
+
 ### trigger | [`<RegEx>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type)
 
 The contextual trigger that will cause the bot to execute the callback upon matches.
