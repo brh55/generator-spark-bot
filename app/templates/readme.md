@@ -24,6 +24,8 @@ For local testing, [`ngrok`](https://ngrok.com/) can be used to set up a public 
 
 Start bot: `npm start`
 
+In addition, a global installation of [nodemon](https://github.com/remy/nodemon) is highly recommended. This will assist in code changes to be tested against the bot without having to manually shutdown the bot.
+
 ## Unit Testing
 Unit tests are set to run with [ava](https://github.com/avajs/ava). Commands are accessible through the following format: `commands.fileName`. Command's private methods can be tested on with the help of [rewire](https://github.com/jhnns/rewire) like so, `commands.fileName.__get__('privateMethod')`.
 
