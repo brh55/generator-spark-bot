@@ -4,7 +4,7 @@ import test from 'ava';
 import helpers from 'yeoman-test';
 import assert from 'yeoman-assert';
 
-test('Test standard scaffold', async () => {
+test.serial('Test standard scaffold', async () => {
 	await helpers
 		.run(path.join(__dirname, '/app'))
 		.withPrompts({
@@ -39,5 +39,30 @@ test('Test standard scaffold', async () => {
 	assert.noFileContent([
 		['readme.md', /<%.*%>/],
 		['.env', /<%.*%>/]
+	]);
+});
+
+test.serial('Test command sub-generator', async () => {
+	await helpers
+		.run(path.join(__dirname, '/command'))
+		.withPrompts({
+			commandName: 'test-command',
+			triggerPhrase: 'test-phrase'
+		});
+
+	// Core Code Intact
+	assert.file([
+		'commands/test-command.js'
+	]);
+
+	// Tpl Assertions
+	assert.fileContent([
+		['commands/test-command.js', /test-command/],
+		['commands/test-command.js', /test-phrase/]
+	]);
+
+	// Check to make sure no lingering tpls
+	assert.noFileContent([
+		['commands/test-command.js', /<%.*%>/]
 	]);
 });

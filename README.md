@@ -16,8 +16,11 @@ Ensure yeoman is is installed:
 
 After yeoman is installed:
 
-`yo spark-bot`
-
+```bash
+$ mkdir project-name
+$ cd project-name
+$ yo spark-bot
+```
 
 ## App Structure
 ```
@@ -33,7 +36,6 @@ After yeoman is installed:
 ```
 
 ## Commands
-> A command sub-generator [yo spark-bot:command] is soon to come
 
 Commands will instruct the bot on when and how to respond to particular contextual triggers.
 
@@ -48,6 +50,11 @@ The contextual trigger that will cause the bot to execute the callback upon matc
 #### callback | [`<function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
 
 The function to be executed (event handler).
+
+## Command Sub-generator
+`yo spark-bot:command`
+
+For convenience, the `:command` sub-generator will generate a new command within the `/commands` directory.
 
 ## Scripts
 
