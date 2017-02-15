@@ -63,6 +63,6 @@ test.serial('Test command sub-generator', async () => {
 
 	// Check to make sure no lingering tpls
 	assert.noFileContent([
-		['commands/test-command.js', /<%.*%>/],
+		['commands/test-command.js', /<%.*%>/]
 	]);
 });

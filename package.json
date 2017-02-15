@@ -40,7 +40,8 @@
   "xo": {
     "esnext": true,
     "ignores": [
-      "app/templates/**"
+      "app/templates/**",
+      "command/templates/**"
     ]
   },
   "repository": "https://github.com/brh55/generator-spark-bot.git",
