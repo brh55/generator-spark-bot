@@ -55,6 +55,12 @@ module.exports = class extends Generator {
 			validate: x => parseInt(x, 10) > 0 && parseInt(x, 10) < 65536 ? true : 'You have to provide a valid port number'
 		},
 		{
+			name: 'redis',
+			message: 'Do you want to activate Redis for storage?',
+			default: false,
+			type: 'confirm'
+		},
+		{
 			name: 'heroku',
 			message: 'Do you want to have a heroku quick deploy?',
 			default: false,
@@ -81,11 +87,24 @@ module.exports = class extends Generator {
 
 			copy([
 				`${this.templatePath()}/**`,
-				`!${this.templatePath()}/_*`
+				`!${this.templatePath()}/_*`,
+				`!${this.templatePath()}/service/_*`
 			], this.destinationPath(), tpl);
 
 			if (props.heroku) {
-				copy(this.templatePath('_app.json'), this.destinationPath('app.json'), tpl);
+				copy(
+					this.templatePath('_app.json'),
+					this.destinationPath('app.json'),
+					tpl
+				);
+			}
+
+			if (props.redis) {
+				copy(
+					this.templatePath('/service/_storage.js'),
+					this.destinationPath('/service/storage.js'),
+					tpl
+				);
 			}
 
 			copyOrphan('_package.json', 'package.json', tpl);
@@ -97,6 +116,6 @@ module.exports = class extends Generator {
 	}
 
 	install() {
-		this.installDependencies({bower: false});
+		this.installDependencies({ bower: false });
 	}
 };

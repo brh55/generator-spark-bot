@@ -1,18 +1,23 @@
+'use strict';
+
 const path = require('path');
-const Flint = require('node-flint');
 const webhook = require('node-flint/webhook');
 const bodyParser = require('body-parser');
 const requireAll = require('require-all');
 const app = require('express')();
-
 const CONFIG = require('./config');
 
-app.use(bodyParser.json());
+// Only set bodyParser to Flint intended route
+// remove first parameter if you wish to apply to all
+app.use('/flint', bodyParser.json());
+const flint = require('./service/flint');
+const sparky = flint.spark;
 
-// Flint
-var flint = new Flint(CONFIG);
-flint.messageFormat = 'markdown';
-flint.start();
+<% if (redis) { %>
+const RedisStore = require('node-flint/storage/redis');
+flint.storageDriver(new RedisStore('redis://127.0.0.1'));
+<% } %>
+
 registerCommands(flint);
 
 app.post('/flint', webhook(flint));
